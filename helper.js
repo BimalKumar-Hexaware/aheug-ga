@@ -1,8 +1,3 @@
-var config = require('./config.js');
-var request = require('request');
-var async = require('async');
-var botConfig = require('./abmspoc-e6fa7-9b84f81aec59.json');
-var requestWithJWT = require('google-oauth-jwt').requestWithJWT();
 var Speech = require('ssml-builder');
 
 var self = {
