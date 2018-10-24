@@ -70,7 +70,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook-enquireOnlineAccess":
                 var bookName = result.contexts[0].parameters.bookName;
                 var author = result.contexts[0].parameters.author;
-                conv.ask("Yes online access to students is available for " + bookName + " by " + author);
+                conv.ask("Yes, online access to students is available for " + bookName + " by " + author);
                 break;
             case "ThankIntent":
                 conv.ask("Happy reading bye bye!");
