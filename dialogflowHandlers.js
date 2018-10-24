@@ -40,9 +40,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent":
                 var speech = new Speech();
-                speech.say('There are two titles that meet this criteria').pause('500ms');
-                var speechOutput = speech.ssml(true);
-                conv.ask(speechOutput);
+                conv.ask("There are two titles that meet this criteria");
                 conv.ask(new List({
                     title: 'Please select',
                     items: {
@@ -75,7 +73,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 var bookName = result.contexts[0].parameters.bookName;
                 var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
-                speech.say('Yes, ').pause('500ms').say("online access to students is available for " + bookName + " by " + author);
+                speech.say("Yes, online access to students is available for " + bookName + " by " + author);
                 var speechOutput = speech.ssml(true);
                 conv.ask(speechOutput);
                 break;
