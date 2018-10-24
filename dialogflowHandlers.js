@@ -1,6 +1,7 @@
 const { Image, List, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
+var Speech = require('ssml-builder');
 
 app.intent('actions.intent.MAIN', conv => {
     conv.ask('<speak>Hi <break time="200ms"/> I am Uni, your virtual library assistant. I can check books availability if you give me the book title. Ask me questions like "Is Design of Everyday thing by Don Norman" available?</speak>');
@@ -38,7 +39,10 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 conv.ask(response);
                 break;
             case "FindBookIntent":
-                conv.ask("There are two titles that meet this criteria");
+                var speech = new Speech();
+                speech.say('There are two titles that meet this criteria').pause('500ms');
+                var speechOutput = speech.ssml(true);
+                conv.ask(speechOutput);
                 conv.ask(new List({
                     title: 'Please select',
                     items: {
@@ -70,7 +74,10 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook-enquireOnlineAccess":
                 var bookName = result.contexts[0].parameters.bookName;
                 var author = result.contexts[0].parameters.author;
-                conv.ask("Yes, online access to students is available for " + bookName + " by " + author);
+                var speech = new Speech();
+                speech.say('Yes, ').pause('500ms').say("online access to students is available for " + bookName + " by " + author);
+                var speechOutput = speech.ssml(true);
+                conv.ask(speechOutput);
                 break;
             case "ThankIntent":
                 conv.ask("Happy reading bye bye!");
@@ -78,7 +85,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
         }
     }).catch((err) => {
         console.log(err);
-        conv.ask('something went wrong').close();
+        conv.ask('Something went wrong').close();
     });
 });
 
