@@ -20,7 +20,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
     console.log("params", params)
     return helper.queryDialogflow(params).then((result) => {
         console.log(JSON.stringify(result));
-        var bookName = result.contexts[0].parameters.bookName;
+        var bookName = result.contexts[0].parameters.book;
         conv.ask("Yes, " + bookName + " is available");
     }).catch((err) => {
         console.log(err);
