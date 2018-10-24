@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "description": "Default Welcome Intent",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "test"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "talk to uni"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "test": {
+      "name": "test",
+      "url": "https://115.69.83.44:3412"
+    }
+  },
+  "locale": "en"
+}
