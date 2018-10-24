@@ -38,8 +38,9 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 conv.ask(response);
                 break;
             case "FindBookIntent":
+                conv.ask("There are two titles that meet this criteria");
                 conv.ask(new List({
-                    title: 'There are two titles that meet this criteria',
+                    title: 'Please select',
                     items: {
                         // Add the first item to the list
                         ['SELECTION_KEY_ONE']: {
