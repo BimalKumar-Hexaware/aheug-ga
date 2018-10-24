@@ -66,11 +66,11 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 }));
                 break;
             case "FindBookIntent-selectBook":
-                var bookName = result.contexts[0].parameters.bookName;
+                var bookName = result.contexts[0].parameters.book;
                 conv.ask("Yes, " + bookName + " is available");
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
-                var bookName = result.contexts[0].parameters.bookName;
+                var bookName = result.contexts[0].parameters.book;
                 var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
                 speech.say("Yes, online access to students is available for " + bookName + " by " + author);
