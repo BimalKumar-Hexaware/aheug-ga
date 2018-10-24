@@ -74,12 +74,12 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 var bookName = result.contexts[0].parameters.book;
                 var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
-                speech.say("Yes, online access to students is available for " + bookName + " by " + author);
+                speech.say("Yes, online access to students is available for " + bookName);
                 var speechOutput = speech.ssml(true);
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
-                conv.ask("Happy reading bye bye!").close();
+                conv.ask("Happy reading! bye!").close();
                 break;
         }
     }).catch((err) => {
