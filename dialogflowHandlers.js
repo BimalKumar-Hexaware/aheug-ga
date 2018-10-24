@@ -79,7 +79,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
-                conv.ask("Happy reading bye bye!");
+                conv.ask("Happy reading bye bye!").close();
                 break;
         }
     }).catch((err) => {
