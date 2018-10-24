@@ -1,4 +1,4 @@
-const { Image,List, actionssdk } = require('actions-on-google')
+const { Image, List, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 
@@ -17,14 +17,14 @@ app.intent('actions.intent.CANCEL', (conv, input) => {
 app.intent('actions.intent.OPTION', (conv, params, option) => {
     console.log("option", option);
     console.log("params", params)
-    switch (option) {
-        case 'SELECTION_KEY_ONE':
-
-            break;
-        case 'SELECTION_KEY_TWO':
-
-            break;
-    }
+    return helper.queryDialogflow(params).then((result) => {
+        console.log(JSON.stringify(result));
+        var bookName = result.contexts[0].parameters.bookName;
+        conv.ask("Yes, " + bookName + " is available");
+    }).catch((err) => {
+        console.log(err);
+        conv.ask('something went wrong').close();
+    });
 });
 
 app.intent('actions.intent.TEXT', (conv, input) => {
@@ -68,7 +68,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 conv.ask("Yes, " + bookName + " is available");
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
-                conv.ask("yes online access to students is available for ‘Lectures on Quantum Computing' by Mikio and Tanaka");
+                conv.ask("Yes online access to students is available for ‘Lectures on Quantum Computing' by Mikio and Tanaka");
                 break;
             case "ThankIntent":
                 conv.ask("Happy reading, bye bye!");
