@@ -29,7 +29,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
 
 app.intent('actions.intent.TEXT', (conv, input) => {
     console.log("Input:", input);
-    return helper.queryDialogflow(conv.input.raw).then((result) => {
+    return helper.queryDialogflow(input).then((result) => {
         console.log('dfrersult', JSON.stringify(result));
         var response;
         switch (result.action) {
@@ -74,6 +74,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
         }
     }).catch((err) => {
+        console.log(err);
         conv.ask('something went wrong').close();
     });
 });
