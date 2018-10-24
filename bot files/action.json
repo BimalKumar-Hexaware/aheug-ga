@@ -19,7 +19,7 @@
   "conversations": {
     "test": {
       "name": "test",
-      "url": "https://115.69.83.44:3412"
+      "url": "https://aheug-ga.herokuapp.com"
     }
   },
   "locale": "en"
