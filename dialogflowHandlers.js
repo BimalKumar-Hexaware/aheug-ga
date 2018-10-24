@@ -1,4 +1,4 @@
-const { List, actionssdk } = require('actions-on-google')
+const { Image,List, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 
