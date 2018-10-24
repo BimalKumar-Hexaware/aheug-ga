@@ -67,6 +67,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent-selectBook":
                 var bookName = result.contexts[0].parameters.book;
+                console.log("bookname", bookName);
                 conv.ask("Yes, " + bookName + " is available");
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
