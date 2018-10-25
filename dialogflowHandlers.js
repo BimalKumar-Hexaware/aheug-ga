@@ -2,6 +2,7 @@ const { Image, List, Carousel, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 var Speech = require('ssml-builder');
+var baseUrl = "https://aheug-ga.herokuapp.com/";
 
 app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
@@ -56,7 +57,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Lectures on Quantum Computing',
                             description: 'Published 2013',
                             image: new Image({
-                                url: "https://aheug-ga.herokuapp.com/LecturesOnQuantumComputing.jpg",
+                                url: baseUrl + "LecturesOnQuantumComputing.jpg",
                                 alt: 'Lectures on Quantum Computing',
                             }),
                         },
@@ -65,7 +66,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Quantum Information and Quantum Computing',
                             description: 'Publish 2013',
                             image: new Image({
-                                url: "https://aheug-ga.herokuapp.com/QuantumInformationAndQuantumComputing.jpg",
+                                url: baseUrl + "QuantumInformationAndQuantumComputing.jpg",
                                 alt: 'Quantum Information and Quantum Computing',
                             }),
                         }
