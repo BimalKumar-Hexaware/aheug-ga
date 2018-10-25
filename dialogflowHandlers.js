@@ -52,7 +52,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                         // Add the first item to the list
                         ['SELECTION_KEY_BOOK1']: {
                             title: 'Lectures on Quantum Computing',
-                            description: 'Lectures on Quantum Computing by Mikio and Tanaka 2013',
+                            description: 'Published 2013',
                             image: new Image({
                                 url: "https://kbimages1-a.akamaihd.net/9838527b-57d2-4895-a8f8-1d8fea4685d5/353/569/90/False/lectures-on-quantum-computing-thermodynamics-and-statistical-physics.jpg",
                                 alt: 'Lectures on Quantum Computing',
@@ -61,7 +61,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                         // Add the second item to the list
                         ['SELECTION_KEY_BOOK2']: {
                             title: 'Quantum Information and Quantum Computing',
-                            description: 'Quantum Information and Quantum Computing by Mikio and Sasaki, 2013',
+                            description: 'Publish 2013',
                             image: new Image({
                                 url: "https://images-na.ssl-images-amazon.com/images/I/51X%2BdIBIeZL._SX354_BO1,204,203,200_.jpg",
                                 alt: 'Quantum Information and Quantum Computing',
