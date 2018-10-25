@@ -8,7 +8,7 @@ app.intent('actions.intent.MAIN', conv => {
     speech.say("Hi").pause("200ms");
     speech.sentence("I am Uni, your virtual library assistant");
     speech.sentence('I can check books availability if you give me the book title.');
-    speech.sentence('Ask me questions like "Is Design of Everyday thing by Don Norman" available?');
+    speech.sentence('Ask me questions like Is Design of Everyday thing by Don Norman available?');
     var speechOutput = speech.ssml(true);
     conv.ask(speechOutput);
 });
