@@ -1,10 +1,16 @@
-const { Image, List, actionssdk } = require('actions-on-google')
+const { Image, List, Carousel, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 var Speech = require('ssml-builder');
 
 app.intent('actions.intent.MAIN', conv => {
-    conv.ask('<speak>Hi <break time="200ms"/> I am Uni, your virtual library assistant. I can check books availability if you give me the book title. Ask me questions like "Is Design of Everyday thing by Don Norman" available?</speak>');
+    var speech = new Speech();
+    speech.say("Hi").pause("200ms");
+    speech.sentence("I am Uni, your virtual library assistant");
+    speech.sentence('I can check books availability if you give me the book title.');
+    speech.sentence('Ask me questions like "Is Design of Everyday thing by Don Norman" available?');
+    var speechOutput = speech.ssml(true);
+    conv.ask(speechOutput);
 });
 
 app.intent('actions.intent.CLOSE', (conv, input) => {
@@ -41,11 +47,10 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent":
                 var speech = new Speech();
                 conv.ask("There are two titles that meet this criteria");
-                conv.ask(new List({
-                    title: 'Please select',
+                conv.ask(new Carousel({
                     items: {
                         // Add the first item to the list
-                        ['SELECTION_KEY_ONE']: {
+                        ['SELECTION_KEY_BOOK1']: {
                             title: 'Lectures on Quantum Computing',
                             description: 'Lectures on Quantum Computing by Mikio and Tanaka 2013',
                             image: new Image({
@@ -54,7 +59,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             }),
                         },
                         // Add the second item to the list
-                        ['SELECTION_KEY_TWO']: {
+                        ['SELECTION_KEY_BOOK2']: {
                             title: 'Quantum Information and Quantum Computing',
                             description: 'Quantum Information and Quantum Computing by Mikio and Sasaki, 2013',
                             image: new Image({
@@ -72,7 +77,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
                 var bookName = result.contexts[0].parameters.book;
-                var author = result.contexts[0].parameters.author;
+                //var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
                 speech.say("Yes, online access to students is available for " + bookName);
                 var speechOutput = speech.ssml(true);
