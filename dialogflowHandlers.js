@@ -48,7 +48,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 var speech = new Speech();
                 speech.emphasis("moderate", "Here are two titles that meet this criteria");
                 var speechOutput = speech.ssml();
-                con.ask(speechOutput);
+                conv.ask(speechOutput);
                 conv.ask(new Carousel({
                     items: {
                         // Add the first item to the list
