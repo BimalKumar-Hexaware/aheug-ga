@@ -56,7 +56,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Lectures on Quantum Computing',
                             description: 'Published 2013',
                             image: new Image({
-                                url: "LecturesOnQuantumComputing.jpg",
+                                url: "https://aheug-ga.herokuapp.com/LecturesOnQuantumComputing.jpg",
                                 alt: 'Lectures on Quantum Computing',
                             }),
                         },
@@ -65,7 +65,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Quantum Information and Quantum Computing',
                             description: 'Publish 2013',
                             image: new Image({
-                                url: "QuantumInformationAndQuantumComputing.jpg",
+                                url: "https://aheug-ga.herokuapp.com/QuantumInformationAndQuantumComputing.jpg",
                                 alt: 'Quantum Information and Quantum Computing',
                             }),
                         }
