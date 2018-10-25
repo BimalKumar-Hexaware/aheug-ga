@@ -5,10 +5,10 @@ var Speech = require('ssml-builder');
 
 app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
-    speech.say("Hi").pause("200ms");
+    speech.say("Hi").pause("500ms");
     speech.sentence("I am Uni, your virtual library assistant");
     speech.sentence('I can check books availability if you give me the book title.');
-    speech.sentence('Ask me questions like Is Design of Everyday thing by Don Norman available?');
+    speech.sentence('Ask me questions like "Is Design of Everyday thing by Don Norman available?"');
     var speechOutput = speech.ssml();
     conv.ask(speechOutput);
 });
@@ -46,7 +46,9 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent":
                 var speech = new Speech();
-                conv.ask("Here are two titles that meet this criteria");
+                speech.emphasis("moderate", "Here are two titles that meet this criteria").break("500ms");
+                var speechOutput = speech.ssml();
+                con.ask(speechOutput);
                 conv.ask(new Carousel({
                     items: {
                         // Add the first item to the list
@@ -54,7 +56,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Lectures on Quantum Computing',
                             description: 'Published 2013',
                             image: new Image({
-                                url: "https://kbimages1-a.akamaihd.net/9838527b-57d2-4895-a8f8-1d8fea4685d5/353/569/90/False/lectures-on-quantum-computing-thermodynamics-and-statistical-physics.jpg",
+                                url: "LecturesOnQuantumComputing.jpg",
                                 alt: 'Lectures on Quantum Computing',
                             }),
                         },
@@ -63,7 +65,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                             title: 'Quantum Information and Quantum Computing',
                             description: 'Publish 2013',
                             image: new Image({
-                                url: "https://images-na.ssl-images-amazon.com/images/I/51X%2BdIBIeZL._SX354_BO1,204,203,200_.jpg",
+                                url: "QuantumInformationAndQuantumComputing.jpg",
                                 alt: 'Quantum Information and Quantum Computing',
                             }),
                         }
@@ -73,18 +75,23 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook":
                 var bookName = result.contexts[0].parameters.book;
                 console.log("bookname", bookName);
-                conv.ask("Yes, " + bookName + " is available");
+                speech.emphasis("moderate", "Yes, ").break("500ms").say(`${bookName} is available`);
+                var speechOutput = speech.ssml();
+                con.ask(speechOutput);
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
                 var bookName = result.contexts[0].parameters.book;
                 //var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
-                speech.say("Yes, online access to students is available for " + bookName);
+                speech.emphasis("moderate", "Yes, ").pause("500ms").say(`online access to students is available for ${bookName}`);
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
-                conv.ask("Happy reading! bye!").close();
+                var speech = new Speech();
+                speech.emphasis("moderate", "Happy reading!").pause("500ms").say("Bye!");
+                var speechOutput = speech.ssml();
+                conv.ask(speechOutput).close();
                 break;
         }
     }).catch((err) => {
