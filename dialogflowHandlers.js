@@ -46,7 +46,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent":
                 var speech = new Speech();
-                speech.emphasis("moderate", "Here are two titles that meet this criteria").break("500ms");
+                speech.emphasis("moderate", "Here are two titles that meet this criteria");
                 var speechOutput = speech.ssml();
                 con.ask(speechOutput);
                 conv.ask(new Carousel({
@@ -75,7 +75,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook":
                 var bookName = result.contexts[0].parameters.book;
                 console.log("bookname", bookName);
-                speech.emphasis("moderate", "Yes, ").break("500ms").say(`${bookName} is available`);
+                speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
                 var speechOutput = speech.ssml();
                 con.ask(speechOutput);
                 break;
@@ -83,13 +83,13 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 var bookName = result.contexts[0].parameters.book;
                 //var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
-                speech.emphasis("moderate", "Yes, ").pause("500ms").say(`online access to students is available for ${bookName}`);
+                speech.emphasis("moderate", "Yes, ").sentence(`online access to students is available for ${bookName}`);
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
                 var speech = new Speech();
-                speech.emphasis("moderate", "Happy reading!").pause("500ms").say("Bye!");
+                speech.emphasis("moderate", "Happy reading!").sentence("Bye!");
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput).close();
                 break;
