@@ -9,7 +9,7 @@ app.intent('actions.intent.MAIN', conv => {
     speech.sentence("I am Uni, your virtual library assistant");
     speech.sentence('I can check books availability if you give me the book title.');
     speech.sentence('Ask me questions like Is Design of Everyday thing by Don Norman available?');
-    var speechOutput = speech.ssml(true);
+    var speechOutput = speech.ssml();
     conv.ask(speechOutput);
 });
 
@@ -46,7 +46,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent":
                 var speech = new Speech();
-                conv.ask("There are two titles that meet this criteria");
+                conv.ask("Here are two titles that meet this criteria");
                 conv.ask(new Carousel({
                     items: {
                         // Add the first item to the list
@@ -80,7 +80,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 //var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
                 speech.say("Yes, online access to students is available for " + bookName);
-                var speechOutput = speech.ssml(true);
+                var speechOutput = speech.ssml();
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
