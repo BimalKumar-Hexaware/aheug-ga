@@ -9,8 +9,7 @@ app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
     speech.say("Hi").pause("500ms");
     speech.sentence("I am Uni, your faculty assistant");
-    speech.sentence('I can help you in getting information about your');
-    speech.sentence('Schedule, Library information and student details');
+    speech.sentence('I can help you in getting information about your schedule, library information and student details');
     var speechOutput = speech.ssml();
     conv.ask(speechOutput);
 });
