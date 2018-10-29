@@ -85,13 +85,13 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 //var author = result.contexts[0].parameters.author;
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`online access to students is available for ${bookName}.`);
-                speech.sentence("Is there anything that I can help you with?");
+                speech.sentence("Do you want to checkout some other title?");
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput);
                 break;
             case "ThankIntent":
                 var speech = new Speech();
-                speech.emphasis("moderate", "Happy reading!").sentence("Bye!");
+                speech.emphasis("moderate", "Thanks!").sentence("Bye!");
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput).close();
                 break;
