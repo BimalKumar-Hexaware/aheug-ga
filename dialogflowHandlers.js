@@ -2,7 +2,7 @@ const { Image, List, Carousel, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 var Speech = require('ssml-builder');
-//var baseUrl = "https://ec2-54-88-142-216.compute-1.amazonaws.com/";
+//var baseUrl = "https://ec2-54-88-142-216.compute-1.amazonaws.com:8011/";
 var baseUrl = "https://aheug-ga.herokuapp.com/";
 
 app.intent('actions.intent.MAIN', conv => {
