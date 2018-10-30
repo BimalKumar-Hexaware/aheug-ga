@@ -32,7 +32,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
         var speech = new Speech();
         speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
         var speechOutput = speech.ssml();
-        con.ask(speechOutput);
+        conv.ask(speechOutput);
     }).catch((err) => {
         console.log(err);
         conv.ask('something went wrong').close();
