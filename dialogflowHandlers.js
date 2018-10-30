@@ -8,7 +8,7 @@ var baseUrl = "https://aheug-ga.herokuapp.com/";
 app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
     speech.say("Hi").pause("500ms");
-    speech.sentence("I am Uni, your faculty assistant");
+    speech.sentence("I am Uni, your faculty assistant.");
     speech.sentence('I can help you in getting information about your schedule, library information and student details');
     var speechOutput = speech.ssml();
     conv.ask(speechOutput);
@@ -76,7 +76,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook":
                 var bookName = result.contexts[0].parameters.book;
                 console.log("bookname", bookName);
-                speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
+                speech.say("Yes, ").break("200ms").sentence(`${bookName} is available`);
                 var speechOutput = speech.ssml();
                 con.ask(speechOutput);
                 break;
