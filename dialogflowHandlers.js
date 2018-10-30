@@ -28,7 +28,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
     console.log("params", params)
     return helper.queryDialogflow(params).then((result) => {
         console.log(JSON.stringify(result));
-        var bookName = result.body.parameters.book;
+        var bookName = result.parameters.book;
         var speech = new Speech();
         speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
         var speechOutput = speech.ssml();
