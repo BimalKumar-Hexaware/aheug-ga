@@ -77,14 +77,14 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                     },
                 }));
                 break;
-            case "FindBookIntent-selectBook":
+            /*case "FindBookIntent-selectBook":
                 var bookName = result.body.parameters.book;
                 console.log("bookname", bookName);
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
                 var speechOutput = speech.ssml();
                 con.ask(speechOutput);
-                break;
+                break;*/
             case "FindBookIntent-selectBook-enquireOnlineAccess":
                 var bookInfo = _.find(req.body.result.contexts, ['name', "findbookintent-followup"]);
                 var bookName = bookInfo.parameters.book;
