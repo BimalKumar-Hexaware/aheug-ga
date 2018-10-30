@@ -78,7 +78,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 }));
                 break;
             case "FindBookIntent-selectBook":
-                var bookName = req.body.parameters.book;
+                var bookName = result.body.parameters.book;
                 console.log("bookname", bookName);
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
