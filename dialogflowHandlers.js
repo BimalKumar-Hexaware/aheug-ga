@@ -29,7 +29,10 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
     return helper.queryDialogflow(params).then((result) => {
         console.log(JSON.stringify(result));
         var bookName = result.body.parameters.book;
-        conv.ask("Yes, " + bookName + " is available");
+        var speech = new Speech();
+        speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
+        var speechOutput = speech.ssml();
+        con.ask(speechOutput);
     }).catch((err) => {
         console.log(err);
         conv.ask('something went wrong').close();
