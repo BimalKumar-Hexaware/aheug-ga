@@ -86,7 +86,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 con.ask(speechOutput);
                 break;*/
             case "FindBookIntent-selectBook-enquireOnlineAccess":
-                var bookInfo = _.find(req.body.result.contexts, ['name', "findbookintent-followup"]);
+                var bookInfo = _.find(result.contexts, ['name', "findbookintent-followup"]);
                 var bookName = bookInfo.parameters.book;
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`online access to students is available for ${bookName}.`);
