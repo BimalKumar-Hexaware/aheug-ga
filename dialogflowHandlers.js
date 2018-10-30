@@ -3,8 +3,8 @@ const app = actionssdk({ debug: true });
 var helper = require('./helper');
 var Speech = require('ssml-builder');
 var _ = require('lodash');
-//var baseUrl = "https://ec2-18-232-207-49.compute-1.amazonaws.com:8011/";
-var baseUrl = "https://aheug-ga.herokuapp.com/";
+var baseUrl = "http://ec2-18-232-207-49.compute-1.amazonaws.com:8011/";
+//var baseUrl = "https://aheug-ga.herokuapp.com/";
 
 app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
