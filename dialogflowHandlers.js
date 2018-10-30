@@ -10,7 +10,7 @@ app.intent('actions.intent.MAIN', conv => {
     var speech = new Speech();
     speech.say("Hi").pause("500ms");
     speech.sentence("I am Uni, your faculty assistant.");
-    speech.sentence('I can help you in getting information about your schedule, library information and student details');
+    speech.sentence('I can help you in getting information about your schedule, library information and student details.');
     var speechOutput = speech.ssml();
     conv.ask(speechOutput);
 });
@@ -30,7 +30,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
         console.log(JSON.stringify(result));
         var bookName = result.parameters.book;
         var speech = new Speech();
-        speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
+        speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available.`);
         var speechOutput = speech.ssml();
         conv.ask(speechOutput);
     }).catch((err) => {
@@ -51,7 +51,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 break;
             case "FindBookIntent":
                 var speech = new Speech();
-                speech.emphasis("moderate", "Here are two titles that meet this criteria");
+                speech.emphasis("moderate", "Here are two titles that meet this criteria.");
                 var speechOutput = speech.ssml();
                 conv.ask(speechOutput);
                 conv.ask(new Carousel({
