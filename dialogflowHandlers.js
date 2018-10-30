@@ -2,6 +2,7 @@ const { Image, List, Carousel, actionssdk } = require('actions-on-google')
 const app = actionssdk({ debug: true });
 var helper = require('./helper');
 var Speech = require('ssml-builder');
+var _ = require('lodash');
 //var baseUrl = "https://ec2-18-232-207-49.compute-1.amazonaws.com:8011/";
 var baseUrl = "https://aheug-ga.herokuapp.com/";
 
@@ -27,7 +28,7 @@ app.intent('actions.intent.OPTION', (conv, params, option) => {
     console.log("params", params)
     return helper.queryDialogflow(params).then((result) => {
         console.log(JSON.stringify(result));
-        var bookName = result.contexts[0].parameters.book;
+        var bookName = req.body.parameters.book;
         conv.ask("Yes, " + bookName + " is available");
     }).catch((err) => {
         console.log(err);
@@ -74,7 +75,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 }));
                 break;
             case "FindBookIntent-selectBook":
-                var bookName = result.contexts[0].parameters.book;
+                var bookName = req.body.parameters.book;
                 console.log("bookname", bookName);
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
@@ -82,8 +83,8 @@ app.intent('actions.intent.TEXT', (conv, input) => {
                 con.ask(speechOutput);
                 break;
             case "FindBookIntent-selectBook-enquireOnlineAccess":
-                var bookName = result.contexts[0].parameters.book;
-                //var author = result.contexts[0].parameters.author;
+                var bookInfo = _.find(req.body.result.contexts, ['name', "findbookintent-followup"]);
+                var bookName = bookInfo.parameters.book;
                 var speech = new Speech();
                 speech.emphasis("moderate", "Yes, ").sentence(`online access to students is available for ${bookName}.`);
                 speech.sentence("Do you want to checkout some other title?");
