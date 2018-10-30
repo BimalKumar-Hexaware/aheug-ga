@@ -76,7 +76,8 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case "FindBookIntent-selectBook":
                 var bookName = result.contexts[0].parameters.book;
                 console.log("bookname", bookName);
-                speech.say("Yes, ").break("200ms").sentence(`${bookName} is available`);
+                var speech = new Speech();
+                speech.emphasis("moderate", "Yes, ").sentence(`${bookName} is available`);
                 var speechOutput = speech.ssml();
                 con.ask(speechOutput);
                 break;
